@@ -18,10 +18,12 @@ def api_get_people():
 
 @router.post("/enter")
 def api_enter_dc(body: NameIn):
-    enter_dc(body.name)
-    return {"ok": True, "message": "Welcome to DC!"}
+    name = body.name.strip()
+    enter_dc(name)
+    return {"ok": True, "message": f"Welcome to DC, {name}!"}
 
 @router.post("/leave")
 def api_leave_dc(body: NameIn):
-    leave_dc(body.name)
-    return {"ok": True, "message": "Goodbye from DC!"}
+    name = body.name.strip()
+    leave_dc(name)
+    return {"ok": True, "message": f"Goodbye from DC, {name}!"}
