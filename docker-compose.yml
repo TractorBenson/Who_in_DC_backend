@@ -1,7 +1,8 @@
 services:
-  widc-backend:
-    image: ghcr.io/20age1million/who_in_dc_backend
+  backend:
+    image: ghcr.io/20age1million/whoindcbackend:${TAG:-latest}
     ports:
       - "3009:8000"
     volumes:
       - ./data:/app/data
+    restart: unless-stopped
