@@ -1,0 +1,7 @@
+services:
+  widc-backend:
+    image: ghcr.io/20age1million/who_in_dc_backend:${TAG:-latest}
+    ports:
+      - "3009:8000"
+    volumes:
+      - ./data:/app/data

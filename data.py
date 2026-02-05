@@ -1,6 +1,6 @@
 import json
 import logging
-import os
+from pathlib import Path
 from datetime import datetime, timezone
 
 logger = logging.getLogger("widc")
@@ -9,10 +9,11 @@ logging.basicConfig(
     format="%(asctime)s %(levelname)s %(name)s: %(message)s",
 )
 
-DATA_FILE = "data.json"
+DATA_DIR = Path("/app/data")
+DATA_FILE = DATA_DIR / "data.json"
 
 def _load_data() -> dict:
-    if not os.path.exists(DATA_FILE):
+    if not DATA_FILE.exists():
         return {"dc": []}
 
     with open(DATA_FILE, "r", encoding="utf-8") as f:
@@ -20,6 +21,7 @@ def _load_data() -> dict:
 
 
 def _save_data(data: dict) -> None:
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
     with open(DATA_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4)
 

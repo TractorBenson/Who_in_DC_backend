@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 
-from ..data import enter_dc, leave_dc, get_people
+from data import enter_dc, leave_dc, get_people
 
 router = APIRouter()
 
